@@ -1,0 +1,67 @@
+/* Styling for the navbar in light mode */
+.navbar.light-mode {
+    background-color: #f8f8f8;
+    color: #333;
+  }
+  
+  /* Styling for the navbar in dark mode */
+  .navbar.dark-mode {
+    background-color: #333;
+    color: #f8f8f8;
+  }
+  
+  /* Add more styling here for other elements in the navbar as needed */
+  /* For example, the logo, menu items, avatar, and logout section */
+  
+  /* Styling for the dark mode toggle switch */
+  .dark-mode-toggle {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-left: 10px;
+  }
+  
+  /* The switch itself */
+  .dark-mode-toggle input[type='checkbox'] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider (round shape) */
+  .dark-mode-toggle label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: background-color 0.4s;
+  }
+  
+  /* Styling the slider when toggled to dark mode */
+  .dark-mode-toggle input[type='checkbox']:checked + label {
+    background-color: #2196f3;
+  }
+  
+  /* Slider's round knob */
+  .dark-mode-toggle label::before {
+    position: absolute;
+    content: '';
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.4s;
+  }
+  
+  /* Move the round knob when toggled to dark mode */
+  .dark-mode-toggle input[type='checkbox']:checked + label::before {
+    transform: translateX(20px);
+  }
+  
