@@ -4,10 +4,42 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../provider/AuthProvider';
-
+import google from "../../assets/sign.png";
 const Register = () => {
-    const { signUp, error, setError, updateUser } = useContext(AuthContext);
+    const { signUp, error, setError, updateUser, googleLogin } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const handleLogin = () => {
+        console.log('google login')
+        googleLogin()
+            .then((userCredential) => {
+                const user = userCredential.user;
+                if (user) {
+                    const userImp = {
+                        name: user.displayName,
+                        email: user.email,
+                        photoUrl: user.photoURL,
+                        role: 'user',
+                        gender : 'Is not specified',
+                        address : 'Is not Provided',
+                        phone : 'Is not Provide',
+                    };
+  
+                    if (user.email && user.displayName) {
+                        return axios.post('https://server-meherab151175.vercel.app/new-user', userImp)
+                            .then(() => {
+                                navigate('/');
+                                return 'Registration successful!';
+                            })
+                            .catch((err) => {
+                                throw new Error(err);
+                            });
+                    }
+  
+                }
+            })
+    }
+    
     const {
         register,
         handleSubmit,
@@ -188,7 +220,9 @@ const Register = () => {
                 <p className="text-center mt-4">
                     Already have an account? <Link to="/login" className="underline text-secondary">Login</Link>
                 </p>
-            {/* <GoogleLogin />  */}
+                <div onClick={() => handleLogin()} className="hover:ring p-1 mt-2 cursor-pointer">
+          <img className='w-full' src={google} alt="" />
+        </div>
             </div>
         </div>
     );
