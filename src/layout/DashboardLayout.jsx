@@ -211,8 +211,6 @@ const DashboardLayout = () => {
                
             </div>
             <div className="h-screen overflow-y-auto px-8 flex-1">
-                {/* <NavBar /> */}
-                {/* <Scroll /> */}
                 <Outlet />
                 <ToastContainer />
             </div>
