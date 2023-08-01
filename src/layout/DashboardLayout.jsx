@@ -39,10 +39,7 @@ const student = [
     { to: "/dashboard/apply-instructor", icon: <GiTeacher className="text-2xl" />, label: "Apply for Instructor" },
 ];
 const lastMenuItems = [
-    { to: "/", icon: <BiHomeAlt className="text-2xl" />, label: "Main Home" },
-    // { to: "/browse", icon: <MdExplore className="text-2xl" />, label: "Browse" },
-    // { to: "/trending", icon: <TbTrendingUp className="text-2xl" />, label: "Trending" },
-    // { to: "/browse", icon: <RiUserFollowFill className="text-2xl" />, label: "Following" },
+    { to: "/", icon: <BiHomeAlt className="text-2xl" />, label: "Main Home" }
 ];
 
 
