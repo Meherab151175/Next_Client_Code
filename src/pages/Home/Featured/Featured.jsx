@@ -1,8 +1,6 @@
 import img1 from '../../../assets/Facilites/f2.jpg'
 import img2 from '../../../assets/Facilites/f1.jpg'
 import img3 from '../../../assets/Facilites/t.jpg'
-// import { BsBook } from 'react-icons/bs';
-// import { AiOutlineMinus } from 'react-icons/ai';
 import CountUp from 'react-countup';
 const Featured = () => {
     return (
@@ -13,11 +11,9 @@ const Featured = () => {
                 </div>
                 <div className="px-7 dark:text-white py-6 shadow-xl">
                     <h1 className='text-2xl ml-5 text-secondary font-bold mb-4'>Our Speciality</h1>
-                    {/* <h1 className='inline-flex items-center dark:text-white gap-2 text-4xl ml-5 font-bold my-4'>Our Facilities</h1> */}
                     <div className="flex items-center gap-4">
                         <div className="relative">
                             <img className='w-[150px] h-[150px] rounded-full' src={img2} alt="" />
-                            {/* <div className='text-3xl absolute -bottom-6 left-11  px-3 py-3 bg-secondary w-fit rounded-full text-white'></div> */}
                         </div>
                         <div className="w-1/2">
                             <h1 className='text-xl font-bold'>Interactive Classroom</h1>
@@ -27,7 +23,6 @@ const Featured = () => {
                     <div className="flex mt-12 items-center gap-4">
                         <div className="relative">
                             <img className='w-[150px] h-[150px] rounded-full' src={img3} alt="" />
-                            {/* <div className='text-3xl absolute -bottom-6 left-11  px-3 py-3 bg-secondary w-fit rounded-full text-white'></div> */}
                         </div>
                         <div className="w-1/2">
                             <h1 className='text-xl font-bold'>Experienced Teacher</h1>
