@@ -92,7 +92,7 @@ const SelectedClass = () => {
                     })
             }
         })
-        // Handle the delete action here
+        
     };
     if (loading) { // [2
         return <div className='h-full w-full flex justify-center items-center'><ScaleLoader color="#FF1949" /></div>;
@@ -187,15 +187,7 @@ const SelectedClass = () => {
                                     <span className="font-semibold">Total</span>
                                     <span className="font-semibold">${price.toFixed(2)}</span>
                                 </div>
-                                {/* <motion.button
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    onClick={() => navigate('/dashboard/user/payment', { state: { price: price, itemId: null } })}
-                                    disabled={price <= 0}
-                                    className="bg-secondary text-white py-2 px-4 rounded-lg mt-4 w-full"
-                                >
-                                    Checkout
-                                </motion.button> */}
+         
                                 <Link
                                     onClick={() => navigate('/dashboard/user/payment', { state: { price: price, itemId: null } })}
                                     disabled={price <= 0}

@@ -36,9 +36,7 @@ const CheckoutPayment = ({ price , cartItm }) => {
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price: price })
             .then(res => {
-                setClientSecret(res.data.clientSecret)
-                console.log(res.data)
-
+                setClientSecret(res.data.clientSecret)  
             })
     }, [])
     const handleSubmit = async (event) => {
@@ -68,8 +66,8 @@ const CheckoutPayment = ({ price , cartItm }) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: currentUser.name || 'Unknown',
-                        email: currentUser.email || 'Anonymous',
+                        name: currentUser?.name || 'Unknown',
+                        email: currentUser?.email || 'Anonymous',
                     },
                 },
             },
@@ -106,7 +104,7 @@ const CheckoutPayment = ({ price , cartItm }) => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        authorization: `Bearer ${localStorage.getItem('token')}`
+                        authorization: `Bearer ${localStorage.getItem('access-token')}`
                     },
                     body: JSON.stringify(data),
                 })

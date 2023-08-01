@@ -22,7 +22,7 @@ const adminNavItems = [
     { to: "/dashboard/admin-home", icon: <BiHomeAlt className="text-2xl" />, label: "Dashboard Home" },
     { to: "/dashboard/manage-users", icon: <FaUsers className="text-2xl" />, label: "Manage Users" },
     { to: "/dashboard/manage-class", icon: <BsFillPostcardFill className="text-2xl" />, label: "Manage Class" },
-    { to: "/dashboard/manage-applications", icon: <TbBrandAppleArcade className="text-2xl" />, label: "Applications" },
+    // { to: "/dashboard/manage-applications", icon: <TbBrandAppleArcade className="text-2xl" />, label: "Applications" },
 ];
 const instructorNavItem = [
     { to: "/dashboard/instructor-home", icon: <FaHome className="text-2xl" />, label: "Home" },
@@ -41,8 +41,8 @@ const student = [
 const lastMenuItems = [
     { to: "/", icon: <BiHomeAlt className="text-2xl" />, label: "Main Home" },
     // { to: "/browse", icon: <MdExplore className="text-2xl" />, label: "Browse" },
-    { to: "/trending", icon: <TbTrendingUp className="text-2xl" />, label: "Trending" },
-    { to: "/browse", icon: <RiUserFollowFill className="text-2xl" />, label: "Following" },
+    // { to: "/trending", icon: <TbTrendingUp className="text-2xl" />, label: "Trending" },
+    // { to: "/browse", icon: <RiUserFollowFill className="text-2xl" />, label: "Following" },
 ];
 
 
