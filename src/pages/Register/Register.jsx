@@ -4,9 +4,6 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../provider/AuthProvider';
-// import { AiOutlineUser, AiOutlineMail, AiOutlineLock, AiOutlinePhone, AiOutlinePicture } from 'react-icons/ai';
-// import { HiOutlineLocationMarker } from 'react-icons/hi';
-// import GoogleLogin from '../../components/Social/GoogleLogin';
 
 const Register = () => {
     const { signUp, error, setError, updateUser } = useContext(AuthContext);
