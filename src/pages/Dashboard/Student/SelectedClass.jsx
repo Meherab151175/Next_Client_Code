@@ -61,7 +61,6 @@ const SelectedClass = () => {
     const handlePay = (id) => {
         console.log(id, 'id from pay')
         const item = classes.find((item) => item._id === id);
-        // console.log(item, 'item from pay')
         const price = item.price;
         navigate('/dashboard/user/payment', { state: { price: price, itemId: id } });
     };
