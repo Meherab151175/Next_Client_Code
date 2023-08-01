@@ -1,231 +1,268 @@
-import  { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { AuthContext } from '../../provider/AuthProvider';
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../provider/AuthProvider";
 import google from "../../assets/sign.png";
 const Register = () => {
-    const { signUp, error, setError, updateUser, googleLogin } = useContext(AuthContext);
-    const navigate = useNavigate();
+  const { signUp, error, setError, updateUser, googleLogin } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
 
-    const handleLogin = () => {
-        console.log('google login')
-        googleLogin()
-            .then((userCredential) => {
-                const user = userCredential.user;
-                if (user) {
-                    const userImp = {
-                        name: user.displayName,
-                        email: user.email,
-                        photoUrl: user.photoURL,
-                        role: 'user',
-                        gender : 'Is not specified',
-                        address : 'Is not Provided',
-                        phone : 'Is not Provide',
-                    };
-  
-                    if (user.email && user.displayName) {
-                        return axios.post('https://server-meherab151175.vercel.app/new-user', userImp)
-                            .then(() => {
-                                navigate('/');
-                                return 'Registration successful!';
-                            })
-                            .catch((err) => {
-                                throw new Error(err);
-                            });
-                    }
-  
-                }
+  const handleLogin = () => {
+    console.log("google login");
+    googleLogin().then((userCredential) => {
+      const user = userCredential.user;
+      if (user) {
+        const userImp = {
+          name: user.displayName,
+          email: user.email,
+          photoUrl: user.photoURL,
+          role: "user",
+          gender: "Is not specified",
+          address: "Is not Provided",
+          phone: "Is not Provide",
+        };
+
+        if (user.email && user.displayName) {
+          return axios
+            .post("https://server-meherab151175.vercel.app/new-user", userImp)
+            .then(() => {
+              navigate("/");
+              return "Registration successful!";
             })
-    }
-    
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        watch,
-    } = useForm();
+            .catch((err) => {
+              throw new Error(err);
+            });
+        }
+      }
+    });
+  };
 
-    const onSubmit = (data) => {
-        setError('');
-        toast.promise(
-            signUp(data.email, data.password)
-                .then((userCredential) => {
-                    console.log(userCredential)
-                    const user = userCredential.user;
-                    if (user) {
-                        return updateUser(data?.name, data?.photoUrl).then(() => {
-                            const newUser = {
-                                name: user.displayName,
-                                email: user.email,
-                                photoUrl: user.photoURL,
-                                gender: data.gender,
-                                address: data.address,
-                                role: 'user',
-                                phone: data.phone,
-                            };
-                            // userImp
-                            if (user.email && user.displayName) {
-                                return axios
-                                    .post('https://server-meherab151175.vercel.app/new-user', newUser)
-                                    .then(() => {
-                                        navigate('/');
-                                        return 'Registration successful!';
-                                    })
-                                    .catch((err) => {
-                                        throw new Error(err);
-                                    });
-                            }
-                        });
-                    }
-                })
-                .catch((err) => {
-                    setError(err.code);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    setError("");
+    toast.promise(
+      signUp(data.email, data.password)
+        .then((userCredential) => {
+          console.log(userCredential);
+          const user = userCredential.user;
+          if (user) {
+            return updateUser(data?.name, data?.photoUrl).then(() => {
+              const newUser = {
+                name: user.displayName,
+                email: user.email,
+                photoUrl: user.photoURL,
+                gender: data.gender,
+                address: data.address,
+                role: "user",
+                phone: data.phone,
+              };
+              // userImp
+              if (user.email && user.displayName) {
+                return axios
+                  .post(
+                    "https://server-meherab151175.vercel.app/new-user",
+                    newUser
+                  )
+                  .then(() => {
+                    navigate("/");
+                    return "Registration successful!";
+                  })
+                  .catch((err) => {
                     throw new Error(err);
-                }),
-            {
-                // pending: 'Please wait...',
-                success: 'Registration successful!',
-                error: 'Registration failed!',
-            }
-        );
-    };
-
-    const password = watch('password', '');
-
-    return (
-        <div className="flex justify-center items-center pt-14 bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-md">
-                <h2 className="text-3xl font-bold text-center mb-6">Please Register</h2>
-                {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="flex items-center gap-5">
-                        <div className="mb-4">
-                            <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
-                                Name
-                            </label>
-                            <input
-                                placeholder="Enter your name"
-                                type="text"
-                                {...register('name', { required: true })}
-                                className="w-full border-gray-300 border rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
-                                Email
-                            </label>
-                            <input
-                                placeholder="Enter your email"
-                                type="email"
-                                {...register('email', { required: true })}
-                                className="w-full border-gray-300 border rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
-                            />
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-5">
-                        <div className="mb-4">
-                            <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
-                                Password
-                            </label>
-                            <input
-                                placeholder="Enter Password"
-                                type="password"
-                                {...register('password')}
-                                className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-2">
-                                Confirm Password
-                            </label>
-                            <input
-                                placeholder="Confirm Password"
-                                type="password"
-                                {...register('confirmPassword', {
-                                    
-                                    validate: (value) => value === password || 'Passwords do not match',
-                                })}
-                                className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
-                            />
-                            {errors.confirmPassword && (
-                                <div className="text-red-500 text-sm w-full mt-1">
-                                    <p>{errors.confirmPassword.message}</p>
-                                </div>
-                            )}
-                        </div>
-
-                    </div>
-                    <div className="flex items-center gap-5">
-                        <div className="mb-4">
-                            <label htmlFor="phoneNumber" className="block text-gray-700 font-bold mb-2">
-                                Phone Number
-                            </label>
-                            <input
-                                placeholder="Phone Number"
-                                type="tel"
-                                {...register('phone', { required: true })}
-                                className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="photoUrl" className="block text-gray-700 font-bold mb-2">
-                                Photo URL
-                            </label>
-                            <input
-                                placeholder="Photo URL"
-                                type="text"
-                                {...register('photoUrl')}
-                                className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
-                            />
-                        </div>
-                    </div>
-                        <div className="">
-                            <label htmlFor="gender" className="block text-gray-700 font-bold mb-2">
-                                Gender
-                            </label>
-                            <select
-                                {...register('gender', { required: true })}
-                                className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
-                            >
-                                <option value="">Select Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="address" className="block text-gray-700 font-bold mb-2">
-                                Address
-                            </label>
-                            <textarea
-                                {...register('address', { required: true })}
-                                className="w-full border resize-none border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
-                                rows="3"
-                                placeholder="Enter your address"
-                            ></textarea>
-                        </div>
-                    <div className="text-center">
-                        <button type="submit" className="bg-secondary hover:bg-red-500 text-white py-2 px-4 rounded-md">
-                            Register
-                        </button>
-                        {errors.password && (
-                            <div className="text-red-500 text-sm w-full mt-1">
-                                <p>Password must be at least 6 characters long, contain at least one <br /> capital letter and  special character.</p>
-                            </div>
-                        )}
-                    </div>
-                </form>
-                <p className="text-center mt-4">
-                    Already have an account? <Link to="/login" className="underline text-secondary">Login</Link>
-                </p>
-                <div onClick={() => handleLogin()} className="hover:ring p-1 mt-2 cursor-pointer">
-          <img className='w-full' src={google} alt="" />
-        </div>
-            </div>
-        </div>
+                  });
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          setError(err.code);
+          throw new Error(err);
+        }),
+      {
+        success: "Registration successful!",
+        error: "Registration failed!",
+      }
     );
+  };
+
+  const password = watch("password", "");
+
+  return (
+    <div className="flex justify-center items-center pt-14 bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md">
+        <h2 className="text-3xl font-bold text-center mb-6">Please Register</h2>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex items-center gap-5">
+            <div className="mb-4">
+              <label
+                htmlFor="name"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Name
+              </label>
+              <input
+                placeholder="Enter your name"
+                type="text"
+                {...register("name", { required: true })}
+                className="w-full border-gray-300 border rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="email"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Email
+              </label>
+              <input
+                placeholder="Enter your email"
+                type="email"
+                {...register("email", { required: true })}
+                className="w-full border-gray-300 border rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-5">
+            <div className="mb-4">
+              <label
+                htmlFor="password"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Password
+              </label>
+              <input
+                placeholder="Enter Password"
+                type="password"
+                {...register("password")}
+                className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="confirmPassword"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Confirm Password
+              </label>
+              <input
+                placeholder="Confirm Password"
+                type="password"
+                {...register("confirmPassword", {
+                  validate: (value) =>
+                    value === password || "Passwords do not match",
+                })}
+                className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+              />
+              {errors.confirmPassword && (
+                <div className="text-red-500 text-sm w-full mt-1">
+                  <p>{errors.confirmPassword.message}</p>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="flex items-center gap-5">
+            <div className="mb-4">
+              <label
+                htmlFor="phoneNumber"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Phone Number
+              </label>
+              <input
+                placeholder="Phone Number"
+                type="tel"
+                {...register("phone", { required: true })}
+                className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="photoUrl"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Photo URL
+              </label>
+              <input
+                placeholder="Photo URL"
+                type="text"
+                {...register("photoUrl")}
+                className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+              />
+            </div>
+          </div>
+          <div className="">
+            <label
+              htmlFor="gender"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Gender
+            </label>
+            <select
+              {...register("gender", { required: true })}
+              className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="address"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Address
+            </label>
+            <textarea
+              {...register("address", { required: true })}
+              className="w-full border resize-none border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+              rows="3"
+              placeholder="Enter your address"
+            ></textarea>
+          </div>
+          <div className="text-center">
+            <button
+              type="submit"
+              className="bg-secondary hover:bg-red-500 text-white py-2 px-4 rounded-md"
+            >
+              Register
+            </button>
+            {errors.password && (
+              <div className="text-red-500 text-sm w-full mt-1">
+                <p>
+                  Password must be at least 6 characters long, contain at least
+                  one <br /> capital letter and special character.
+                </p>
+              </div>
+            )}
+          </div>
+        </form>
+        <p className="text-center mt-4">
+          Already have an account?{" "}
+          <Link to="/login" className="underline text-secondary">
+            Login
+          </Link>
+        </p>
+        <div
+          onClick={() => handleLogin()}
+          className="hover:ring p-1 mt-2 cursor-pointer"
+        >
+          <img className="w-full" src={google} alt="" />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Register;
