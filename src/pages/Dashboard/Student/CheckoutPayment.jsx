@@ -14,7 +14,6 @@ const CheckoutPayment = ({ price , cartItm }) => {
     const [message, setMessage] = useState('');
     const [cart, setCart] = useState([]);
 
-    // Return the amount is less than 0 or not provided
     if (price < 0 || !price) {
         return <Navigate to="/dashboard/selected-classes" replace />
     }
@@ -25,7 +24,6 @@ const CheckoutPayment = ({ price , cartItm }) => {
     useEffect(() => {
         axiosSecure.get(`/cart/${currentUser?.email}`)
             .then((res) => {
-                // SET CLASSES ID IN STATE
                 const classesId = res.data.map(item => item._id);
                 setCart(classesId)
             })
@@ -79,7 +77,6 @@ const CheckoutPayment = ({ price , cartItm }) => {
         else {
             console.log('[PaymentMethod]', paymentIntent);
 
-            // PAYMENT LOGIC HERE WHEN PAYMENT IS SUCCESSFUL
             if (paymentIntent.status === 'succeeded') {
                 const transactionId = paymentIntent.id;
                 const paymentMethod = paymentIntent.payment_method;
@@ -99,7 +96,6 @@ const CheckoutPayment = ({ price , cartItm }) => {
                     classesId : cartItm ? [cartItm] : cart, 
                     date : new Date()
                 }
-                // axiosSecure.post('/payment-info', data)
                 fetch(URL, {
                     method: 'POST',
                     headers: {
