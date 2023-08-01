@@ -17,7 +17,7 @@ const Featured = () => {
                     <div className="flex items-center gap-4">
                         <div className="relative">
                             <img className='w-[150px] h-[150px] rounded-full' src={img2} alt="" />
-                            <div className='text-3xl absolute -bottom-6 left-11  px-3 py-3 bg-secondary w-fit rounded-full text-white'></div>
+                            {/* <div className='text-3xl absolute -bottom-6 left-11  px-3 py-3 bg-secondary w-fit rounded-full text-white'></div> */}
                         </div>
                         <div className="w-1/2">
                             <h1 className='text-xl font-bold'>Interactive Classroom</h1>
@@ -27,7 +27,7 @@ const Featured = () => {
                     <div className="flex mt-12 items-center gap-4">
                         <div className="relative">
                             <img className='w-[150px] h-[150px] rounded-full' src={img3} alt="" />
-                            <div className='text-3xl absolute -bottom-6 left-11  px-3 py-3 bg-secondary w-fit rounded-full text-white'></div>
+                            {/* <div className='text-3xl absolute -bottom-6 left-11  px-3 py-3 bg-secondary w-fit rounded-full text-white'></div> */}
                         </div>
                         <div className="w-1/2">
                             <h1 className='text-xl font-bold'>Experienced Teacher</h1>
