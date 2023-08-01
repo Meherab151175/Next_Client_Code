@@ -22,11 +22,13 @@ import UpdateClasses from "../pages/Dashboard/InstructorDashboard/UpdateClasses"
 import Payment from "../pages/Dashboard/Student/Payment";
 import PaymentHistory from "../pages/Dashboard/Student/PaymentHistory";
 import Classes from "../pages/Classes";
+import Error from "../pages/Error";
 
 export const router = createBrowserRouter([
     {
         path:'/',
         element:<MainLayout />,
+        errorElement:<Error />,
         children:[
             {
                 path:'/',
@@ -53,6 +55,7 @@ export const router = createBrowserRouter([
     {
         path:'/dashboard',
         element:<DashboardLayout />,
+        errorElement:<Error />,
         children: [
             {
                 index: true,
