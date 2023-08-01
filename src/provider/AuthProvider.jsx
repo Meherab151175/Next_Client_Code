@@ -13,14 +13,9 @@ const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
 
-    const signUp = async (email, password) => {
-        try {
+    const signUp =  (email, password) => {
             setLoader(true)
-            return await createUserWithEmailAndPassword(auth, email, password)
-        } catch (error) {
-            setError(error.code)
-            throw error
-        }
+            return createUserWithEmailAndPassword(auth, email, password)     
     }
     const login = async (email, password) => {
         try {
@@ -68,8 +63,8 @@ const AuthProvider = ({ children }) => {
                 axios.post('https://server-meherab151175.vercel.app/jwt', { email: user?.email, name: user?.displayName })
                     .then(data => {
                         
-                        if (data?.data?.token) {
-                            localStorage.setItem('access-token', data?.data?.token);
+                        if (data.data?.token) {
+                            localStorage.setItem('access-token', data.data.token);
                             setLoader(false);
                         }
                     })

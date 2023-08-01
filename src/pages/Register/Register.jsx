@@ -1,7 +1,5 @@
 import  { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-// import { useTitle } from '../../hooks/useTitle';
-
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -11,7 +9,6 @@ import { AuthContext } from '../../provider/AuthProvider';
 // import GoogleLogin from '../../components/Social/GoogleLogin';
 
 const Register = () => {
-    // useTitle('Register | Sound Safari');
     const { signUp, error, setError, updateUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const {
@@ -29,7 +26,7 @@ const Register = () => {
                     console.log(userCredential)
                     const user = userCredential.user;
                     if (user) {
-                        return updateUser(data.name, data.photoUrl).then(() => {
+                        return updateUser(data?.name, data?.photoUrl).then(() => {
                             const newUser = {
                                 name: user.displayName,
                                 email: user.email,

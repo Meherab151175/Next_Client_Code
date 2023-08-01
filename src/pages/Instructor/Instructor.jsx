@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAxiosFetch from "../../hooks/useAxiosFetch";
+import { Helmet } from "react-helmet-async";
 
 const Instructor = () => {
   const axiosInstance = useAxiosFetch();
@@ -12,6 +13,9 @@ const Instructor = () => {
 
   return (
     <div className='mt-12 dark:bg-black w-[80%] mx-auto'>
+        <Helmet>
+        <title>NextLang |Instructors</title>
+      </Helmet>
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8  pt-28">
         {
             instructors.map(instructor =><div key={instructor?._id} className="max-w-xs">
