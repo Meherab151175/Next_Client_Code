@@ -14,7 +14,7 @@ import { SiGoogleclassroom } from 'react-icons/si';
 // import { MdExplore } from 'react-icons/md';
 import { TbBrandAppleArcade } from 'react-icons/tb';
 import { GiTeacher } from 'react-icons/gi';
-import { HashLoader } from 'react-spinners';
+import { GridLoader } from 'react-spinners';
 import Swal from 'sweetalert2';
 import useAuth from '../hooks/useAuth';
 
@@ -83,12 +83,9 @@ const DashboardLayout = () => {
 
     const role = currentUser?.role;
 
-    if (loader) {
-        return <div className='flex justify-center items-center h-screen'>
-            <HashLoader
-                color="#FF1949"
-                size={50}
-            />
+    if(loader){
+        return <div className='flex items-center justify-center h-screen'>
+            <GridLoader color="#1C75BC" />
         </div>
     }
 
