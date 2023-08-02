@@ -17,3 +17,7 @@ Used Package
 ### Daisy Ui
 ### Moment js
 ### Uuid
+
+
+
+[Next Lang](https://email-password-auth-3cd28.web.app/)
