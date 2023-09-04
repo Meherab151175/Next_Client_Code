@@ -85,7 +85,7 @@ const PopularClasses = () => {
                     alt="card-image"
                   />
                 </CardHeader>
-                <CardBody>
+                <CardBody className='text-center md:text-start'>
                   <Typography variant="h5" color="blue-gray" className="mb-2">
                   {item.name}
                   </Typography>
@@ -99,7 +99,7 @@ const PopularClasses = () => {
                   TotalEnrolled : {item.totalEnrolled}
                   </Typography>
                 </CardBody>
-                <CardFooter className="pt-0">
+                <CardFooter className="pt-0  text-center md:text-start">
                   <Button onClick={() => handleSelect(item._id)} className='bg-secondary'>Select</Button>
                 </CardFooter>
               </Card>

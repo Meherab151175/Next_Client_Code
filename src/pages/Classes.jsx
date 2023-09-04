@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { useUser } from "../hooks/useUser";
 import useAxiosFetch from "../hooks/useAxiosFetch";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Classes = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const { currentUser } = useUser();
@@ -48,6 +49,7 @@ const Classes = () => {
 
           toast.promise(
             axiosSecure.post("/add-to-cart", data).then((res) => {
+              // toast.success("Selected Successfully!")
               console.log(res.data);
             }),
 
@@ -148,6 +150,7 @@ const Classes = () => {
           </div>
         ))}
       </div>
+      <ToastContainer />
     </div>
   );
 };

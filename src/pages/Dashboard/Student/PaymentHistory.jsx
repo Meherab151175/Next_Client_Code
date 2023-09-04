@@ -34,7 +34,7 @@ const PaymentHistory = () => {
                 setLoading(false)
             })
             .catch(err => console.log(err))
-    }, [currentUser.email])
+    }, [currentUser?.email])
 
 
     const theme = createTheme({

@@ -63,7 +63,7 @@ function NavBar() {
         <div className="max-w-7xl mx-auto">
           <div className="flex mx-auto items-center justify-between w-5/6 ">
             {/* Primary menu and logo */}
-            <div className="flex items-center gap-16 my-8">
+            <div className="flex items-center gap-10 md:gap-16 my-6">
               <img src="https://i.ibb.co/5FRJR1x/Languagenext-Logo.png" width={44} alt="" />
               <div>
                 <Link

@@ -39,19 +39,19 @@ const PopularInstructor = () => {
             <div className="grid mb-28 md:grid-cols-2 lg:grid-cols-3 mx-auto w-[90%] gap-6">
                 {
                     instructors.map(instructor => 
-                        <Card  key={instructor.instructor._id} className="w-96">
+                        <Card  key={instructor.instructor?._id} className="w-96">
                         <CardHeader floated={false} className="h-80">
-                          <img src={instructor.instructor.photoUrl} alt="profile-picture" />
+                          <img src={instructor.instructor?.photoUrl} alt="profile-picture" />
                         </CardHeader>
-                        <CardBody className="text-center">
+                        <CardBody className="text-center md:text-start">
                           <Typography variant="h4" color="blue-gray" className="mb-2">
-                          {instructor.instructor.name}
+                          {instructor.instructor?.name}
                           </Typography>
                           <Typography color="blue" className="font-medium" textGradient>
                             Instructor
                           </Typography>
                           <Typography color="blue" className="font-medium" textGradient>
-                            <div className="text-gray-500 mb-3 whitespace-nowrap">Total Students : {instructor.totalEnrolled}</div>
+                            <div className="text-gray-500 mb-3 whitespace-nowrap">Total Students : {instructor?.totalEnrolled}</div>
                           </Typography>
                         </CardBody>
                         <CardFooter className="flex justify-center gap-7 ">

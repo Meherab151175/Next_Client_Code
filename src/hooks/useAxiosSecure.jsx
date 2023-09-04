@@ -65,7 +65,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://server-meherab151175.vercel.app',
   });
 
   // Request Interceptor
